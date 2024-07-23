@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from './hooks';
+import { fetchData } from './features/dataSlice';
+import CardsList from './CardsList';
 
-function App() {
+const App: React.FC = () => {
+  const dispatch = useAppDispatch();
+  // @ts-ignore
+  const data = useAppSelector(state => state.data.items);
+  // @ts-ignore
+  const dataStatus = useAppSelector(state => state.data.status);
+  // @ts-ignore
+  const error = useAppSelector(state => state.data.error);
+
+  useEffect(() => {
+    if (dataStatus === 'idle') {
+      dispatch(fetchData());
+    }
+  }, [dataStatus, dispatch]);
+
+  let content;
+
+  if (dataStatus === 'loading') {
+    content = <p>Loading...</p>;
+  } else if (dataStatus === 'succeeded') {
+    content = (
+      <CardsList data={data} />
+    );
+  } else if (dataStatus === 'failed') {
+    content = <p>{error}</p>;
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Data List</h1>
+      {content}
     </div>
   );
-}
+};
 
 export default App;
