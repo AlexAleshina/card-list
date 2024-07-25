@@ -1,12 +1,11 @@
 # Product list
-Components: a modal with image loading, a carousel for images, selectors. In the project I use React and styled-components.
+Components: a modal with image loading, a carousel for images and selectors. In the project I use React and styled-components.
 
 # Features
 
 Modal with Image Loading: A modal component with a loading spinner to indicate progress until the image is fully loaded. Maintains aspect ratio and fits within the viewport.
 
 Carousel: An image carousel component for navigating through multiple images.
-Selectors
 
 Color Selector: Allows to select colors from a list of options displayed as colored dots.
 
