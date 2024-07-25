@@ -1,4 +1,4 @@
-# Card list Application
+# Product list
 Components: a modal with image loading, a carousel for images, selectors. In the project I use React and styled-components.
 
 # Features
