@@ -1,8 +1,27 @@
 import ImageCarousel from './ImageCarousel';
 import './App.css';
-import SelectorComponent from './Selector';
+import SelectorComponent from './Selectors';
 import { useCallback, useState } from 'react';
 import './ImageCarousel.css';
+import styled from 'styled-components';
+import ModelDetailsContainer from './ModelDetailsContainer';
+
+const SelectorsWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    justify-content: space-between;
+`;
+
+const DetailsContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`;
+
 
 const filterModels = (modelList: any, selections: any) => {
   return modelList.filter((model: any) =>
@@ -30,10 +49,11 @@ const CardsList = ({ item }: { item: any }) => {
     <div className="card">
       <h3>{item.fmyMarketingName}</h3>
 
-      {item?.chipOptions?.map((option: any, i: number) => (
-        <SelectorComponent key={i} data={option} onSelectionChange={handleSelectionChange} />
-      ))}
-
+      <SelectorsWrapper>
+        {item?.chipOptions?.map((option: any, i: number) => (
+          <SelectorComponent key={i} data={option} onSelectionChange={handleSelectionChange} />
+        ))}
+      </SelectorsWrapper>
 
       {!filteredModels?.length && !!item?.modelList[0] && (
         <img
@@ -44,9 +64,10 @@ const CardsList = ({ item }: { item: any }) => {
       )}
 
       {!!filteredModels && filteredModels?.map((model: any, i: number) => (
-        <div key={model.modelCode + i}>
-          <ImageCarousel data={model} selectedValues={selections}></ImageCarousel>
-        </div>
+        <DetailsContainer key={model.modelCode + i}>
+          <ImageCarousel data={model}></ImageCarousel>
+          <ModelDetailsContainer data={model}></ModelDetailsContainer>
+        </DetailsContainer>
       ))}
     </div>
   );

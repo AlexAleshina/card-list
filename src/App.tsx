@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from './hooks';
 import { fetchData } from './features/dataSlice';
-import CardsList from './CardsList';
+import CardsList from './components/CardsList';
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -32,7 +32,7 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-      <h1>Data List</h1>
+      <h1>Products List</h1>
       {content}
     </div>
   );
