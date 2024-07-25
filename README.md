@@ -1,4 +1,10 @@
 # Product list
+
+![Product list](docs/screenshot1.png "Screenshot 1")
+
+![Modal dialog](docs/screenshot2.png "Screenshot 1")
+
+
 Components: a modal with image loading, a carousel for images and selectors. In the project I use React and styled-components.
 
 # Features
