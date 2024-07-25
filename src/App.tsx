@@ -21,18 +21,18 @@ const App: React.FC = () => {
   let content;
 
   if (dataStatus === 'loading') {
-    content = <p>Loading...</p>;
+    content = <p style={{ 'color': '#9e9e9e', 'fontWeight': 'bold' }}>Loading...</p>;
   } else if (dataStatus === 'succeeded') {
     content = (
       <CardsList data={data} />
     );
   } else if (dataStatus === 'failed') {
-    content = <p>{error}</p>;
+    content = <p style={{ 'color': 'red', 'fontWeight': 'bold' }}> {error}</p >;
   }
 
   return (
     <div className="App">
-      <h1>Products List</h1>
+      <h1 style={{ 'color': '#e3e3e3', 'textAlign': 'center' }}>Products List</h1>
       {content}
     </div>
   );

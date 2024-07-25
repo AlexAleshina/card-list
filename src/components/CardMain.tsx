@@ -1,27 +1,47 @@
 import ImageCarousel from './ImageCarousel';
-import './App.css';
 import SelectorComponent from './Selectors';
 import { useCallback, useState } from 'react';
-import './ImageCarousel.css';
+import ModelDetailsContainer from './DetailsContainer';
 import styled from 'styled-components';
-import ModelDetailsContainer from './ModelDetailsContainer';
+import { CardImage } from './styled';
+
+const Card = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    padding: 24px;
+    border: 1px solid #f7f7f7;
+    background-color: #f7f7f7;
+    width: 350px;
+    height: 100%;
+`;
 
 const SelectorsWrapper = styled.div`
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     margin-top: 8px;
     margin-bottom: 8px;
     justify-content: space-between;
+    width: 100%;
 `;
 
 const DetailsContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: end;
+    height: 100%;
 `;
 
+const MainCardTitle = styled.h3`
+    color: #333;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+`;
 
 const filterModels = (modelList: any, selections: any) => {
   return modelList.filter((model: any) =>
@@ -35,8 +55,6 @@ const CardsList = ({ item }: { item: any }) => {
   const [selections, setSelections] = useState({});
 
   const filteredModels = filterModels(item?.modelList, selections);
-  console.log('filteredModels:', filteredModels);
-
   const handleSelectionChange = useCallback((name: string, selectedValue: string) => {
     setSelections(prevSelections => ({
       ...prevSelections,
@@ -44,10 +62,9 @@ const CardsList = ({ item }: { item: any }) => {
     }));
   }, []);
 
-  console.log('selections:', selections);
   return (
-    <div className="card">
-      <h3>{item.fmyMarketingName}</h3>
+    <Card>
+      <MainCardTitle>{item.fmyMarketingName}</MainCardTitle>
 
       <SelectorsWrapper>
         {item?.chipOptions?.map((option: any, i: number) => (
@@ -56,10 +73,9 @@ const CardsList = ({ item }: { item: any }) => {
       </SelectorsWrapper>
 
       {!filteredModels?.length && !!item?.modelList[0] && (
-        <img
+        <CardImage
           src={item?.modelList[0]?.thumbUrl}
           alt={item?.modelList[0]?.thumbUrlAlt}
-          className="carousel-image"
         />
       )}
 
@@ -69,7 +85,7 @@ const CardsList = ({ item }: { item: any }) => {
           <ModelDetailsContainer data={model}></ModelDetailsContainer>
         </DetailsContainer>
       ))}
-    </div>
+    </Card>
   );
 };
 

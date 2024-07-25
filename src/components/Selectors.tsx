@@ -42,7 +42,7 @@ const OptionButton = styled.button<{ selected: boolean }>`
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 
     &:hover {
-        border: 1px solid #000;
+      border: 1px solid ${props => (props.selected ? '#000' : '#ccc')};
     }
     
 `;

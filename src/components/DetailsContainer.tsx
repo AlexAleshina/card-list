@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
-    width: 300px;
-    text-align: center;
+    width: 350px;
+    text-align: left;
 `;
 
 const PriceText = styled.p`

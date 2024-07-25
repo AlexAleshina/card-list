@@ -1,15 +1,15 @@
 import { useState } from 'react';
-import './ImageCarousel.css';
 import styled from 'styled-components';
-
+import { CardImage } from './styled';
+import Modal from './Modal';
 
 const CarouselWrapper = styled.div`
     width: 100%;
-    max-width: 600px;
+    max-width: 700px;
     margin: 0 auto;
     overflow: hidden;
     position: relative;
-    height: 150px;
+    height: 250px;
 `;
 
 const CarouselTrack = styled.div<{ translate: number }>`
@@ -23,11 +23,6 @@ const CarouselSlide = styled.div`
     box-sizing: border-box;
 `;
 
-const SlideImage = styled.img`
-    width: 100%;
-    display: block;
-`;
-
 const CarouselButton = styled.button`
     position: absolute;
     top: 50%;
@@ -39,7 +34,8 @@ const CarouselButton = styled.button`
     padding: 8px;
     cursor: pointer;
     &:hover {
-        background: rgba(255, 255, 255, 1);
+      background: rgba(255, 255, 255, 1);
+      color: #9e9e9e;
     }
 `;
 
@@ -51,10 +47,6 @@ const NextButton = styled(CarouselButton)`
     right: 10px;
 `;
 
-
-type CarouselProps = {
-  data: Record<string, any>[];
-}
 
 const ImageCarousel = ({ data }: { data: any }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -76,13 +68,13 @@ const ImageCarousel = ({ data }: { data: any }) => {
     setCurrentIndex((prevIndex) => (prevIndex === data?.galleryImage.length - 1 ? 0 : prevIndex + 1));
   };
 
-  const slideWidth = 300;
+  const slideWidth = 350;
   return (
     <CarouselWrapper>
       <CarouselTrack translate={currentIndex * slideWidth}>
         {data?.galleryImage.map((slide: string, i: number) => (
           <CarouselSlide key={slide + i}>
-            <SlideImage onClick={() => openModal()} src={slide} alt={data?.galleryImageAlt[currentIndex]} />
+            <CardImage loading='eager' onClick={() => openModal()} src={slide} alt={data?.galleryImageAlt[currentIndex]} />
           </CarouselSlide>
         ))}
       </CarouselTrack>
@@ -90,12 +82,7 @@ const ImageCarousel = ({ data }: { data: any }) => {
       <NextButton onClick={handleNext}>&#9654;</NextButton>
 
       {isModalOpen && (
-        <div className="modal" onClick={closeModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <span className="close" onClick={closeModal}>&times;</span>
-            <img src={data?.galleryImageLarge[currentIndex]} alt={data?.galleryImageAlt[currentIndex]} className="modal-image" />
-          </div>
-        </div>
+        <Modal isOpen={isModalOpen} onClose={closeModal} image={data?.galleryImageLarge[currentIndex]} altText={data?.galleryImageAlt[currentIndex]} />
       )}
     </CarouselWrapper>
   );
