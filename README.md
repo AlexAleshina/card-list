@@ -3,28 +3,23 @@ Components: a modal with image loading, a carousel for images and selectors. In 
 
 # Features
 
-Modal with Image Loading: A modal component with a loading spinner to indicate progress until the image is fully loaded. Maintains aspect ratio and fits within the viewport.
+* Modal with image loading: A modal component with a loading spinner to indicate progress until the image is fully loaded.
+* Carousel: An image carousel component for navigating through multiple images.
+* Color Selector: Allows to select colors from a list of options displayed as colored dots.
+* Option Selector: Allows users to select text options, styled as buttons with a background color change on selection.
 
-Carousel: An image carousel component for navigating through multiple images.
-
-Color Selector: Allows to select colors from a list of options displayed as colored dots.
-
-Text Selector: Allows users to select text options, styled as buttons with a background color change on selection.
-
-# What else I wanted to Do
+# What else I wanted to do
 There are several additional features and improvements I wanted to implement but couldn't due to time constraints:
 
-Add More Types with TypeScript
-
-Tooltips for Selections to provide additional information.
-
-Skeletons during loading state
+* Add more types with TypeScript.
+* Tooltips for color and option selectors to provide additional information.
+* Skeletons during loading state.
 
 ## Available Scripts
 
 In the project directory, you can run:
 ### `npm install`
-than
+
 ### `npm start`
 
 Runs the app in the development mode.\
