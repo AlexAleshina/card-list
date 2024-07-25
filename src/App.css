@@ -4,10 +4,3 @@
   margin-top: 8px;
   margin-bottom: 16px;
 }
-
-.card-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 16px;
-}

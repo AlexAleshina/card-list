@@ -2,10 +2,13 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { CardImage } from './styled';
 import Modal from './Modal';
+import { CARD_WIDTH } from './constants';
+
+const slideWidth = CARD_WIDTH;
 
 const CarouselWrapper = styled.div`
     width: 100%;
-    max-width: 700px;
+    max-width: ${CARD_WIDTH * 2}px;
     margin: 0 auto;
     overflow: hidden;
     position: relative;
@@ -68,7 +71,6 @@ const ImageCarousel = ({ data }: { data: any }) => {
     setCurrentIndex((prevIndex) => (prevIndex === data?.galleryImage.length - 1 ? 0 : prevIndex + 1));
   };
 
-  const slideWidth = 350;
   return (
     <CarouselWrapper>
       <CarouselTrack translate={currentIndex * slideWidth}>

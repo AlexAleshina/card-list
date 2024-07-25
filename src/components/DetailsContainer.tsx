@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import { CARD_WIDTH } from './constants';
 
 const Container = styled.div`
-    width: 350px;
+    width: ${CARD_WIDTH}px;
     text-align: left;
 `;
 

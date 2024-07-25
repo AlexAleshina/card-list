@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from './hooks';
 import { fetchData } from './features/dataSlice';
 import CardsList from './components/CardsList';
+import './App.css';
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch();

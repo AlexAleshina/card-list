@@ -64,7 +64,7 @@ const CardsList = ({ item }: { item: any }) => {
 
   return (
     <Card>
-      <MainCardTitle>{item.fmyMarketingName}</MainCardTitle>
+      <MainCardTitle>{item?.fmyMarketingName || 'Name'}</MainCardTitle>
 
       <SelectorsWrapper>
         {item?.chipOptions?.map((option: any, i: number) => (

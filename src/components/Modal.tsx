@@ -1,27 +1,14 @@
 import { useState, useEffect } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
+import { Spinner } from './styled';
 
-const spin = keyframes`
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-`;
-
-const Spinner = styled.div`
-  border: 8px solid #f3f3f3;
-  border-top: 8px solid #3498db;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  animation: ${spin} 2s linear infinite;
-  margin: auto;
-`;
 const ModalOverlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,7 +22,7 @@ const ModalContent = styled.div`
   position: relative;
   max-width: 90vw;
   max-height: 90vh;
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 5 / 4;
   overflow: hidden;
   text-align: center;
 
@@ -51,25 +38,23 @@ const ModalContent = styled.div`
 const CloseButton = styled.span`
   position: absolute;
   top: 10px;
-  right: 10px;
-  font-size: 24px;
+  right: 15px;
+  font-size: 32px;
   font-weight: bold;
   cursor: pointer;
-  color: #333;
+  color: #e1e1e1;
   z-index: 2;
   &:hover {
-    color: #ff0000;
+    color: #9e9e9e;
   }
 `;
 
-const ModalImage = styled.img<{ loaded: boolean }>`
+const ModalImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: contain;
   position: relative;
-  display: ${props => (props.loaded ? 'block' : 'none')};
-  filter: ${props => (props.loaded ? 'none' : 'blur(15px)')};
-  transition: opacity 0.5s ease-in-out;
+  filter: drop-shadow(16px 16px 16px grey);
 `;
 
 const Placeholder = styled.div`
@@ -79,8 +64,6 @@ const Placeholder = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #f0f0f0;
-  color: #999;
-  font-size: 24px;
   min-height: 300px;
   min-width: 400px;
 `;
@@ -101,7 +84,7 @@ const Modal = ({ isOpen, onClose, image, altText }: { isOpen: boolean, onClose: 
       <ModalContent onClick={(e) => e.stopPropagation()}>
         <CloseButton onClick={onClose}>&times;</CloseButton>
         {image && loaded ? (
-          <ModalImage loaded={loaded} src={image} alt={altText} />
+          <ModalImage src={image} alt={altText} />
         ) : (
           <Placeholder>
             <Spinner />

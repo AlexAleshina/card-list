@@ -19,11 +19,8 @@ const API_URL = apiUrl || '';
 export const fetchData = createAsyncThunk('data/fetchData', async () => {
   try {
     const response = await axios.get(API_URL);
-
-    console.log({ response });
-    return response.data?.response.resultData?.productList;
+    return response.data?.response?.resultData?.productList || [];
   } catch (error) {
-    // TODO
     throw new Error('Some error occurred');
   }
 });
